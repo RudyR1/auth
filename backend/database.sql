@@ -5,7 +5,6 @@ CREATE TABLE users (
     username VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
-    salt VARCHAR(16),
     created_at DATE DEFAULT(current_date),
     updated_at DATE
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;

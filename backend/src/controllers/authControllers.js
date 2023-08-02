@@ -22,11 +22,14 @@ const login = (req, res) => {
               id: user.id,
               email: user.email,
             });
-            const currentuser = user;
+            const currentuser = user.email;
             delete currentuser.password_hash;
             res
               .status(200)
-              .cookie("token", token, { httpOnly: false, secure: false })
+              .cookie("token", token, { 
+                httpOnly: true,
+                expires: new Date(Date.now() + 1000 * 60 *60),
+                secure: false })
               .send({ currentuser, token });
           }
         })

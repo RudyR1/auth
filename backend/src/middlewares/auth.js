@@ -14,29 +14,6 @@ const checkIds = (req, res, next) => {
   }
 };
 
-const verifyToken = (req, res, next) => {
-  try {
-    const authorizationHeader = req.get("Authorization");
-
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
-    }
-
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-
-    req.payload = jwt.verify(token, process.env.JWT_SECRET);
-
-    next();
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(401);
-  }
-};
-
 const verifyCookie = (req, res, next) => {
   if (req.cookies) {
     jwt.verify(req.cookies.token, process.env.JWT_SECRET, (err, decode) => {
@@ -54,4 +31,9 @@ const verifyCookie = (req, res, next) => {
   }
 };
 
-module.exports = { checkIds, verifyToken, verifyCookie };
+const logout = (req, res) => {
+
+    
+}
+
+module.exports = { checkIds, verifyCookie };

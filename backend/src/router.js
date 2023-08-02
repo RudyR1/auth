@@ -9,9 +9,13 @@ const { hashPassword } = require("./services/auth");
 const { checkIds, verifyCookie } = require("./middlewares/auth");
 
 router.get("/users", usersControllers.browse);
-router.get("/users/:id", verifyCookie, usersControllers.read);
 router.put("/users/:id", hashPassword, usersControllers.edit);
 router.post("/signup", hashPassword, usersControllers.add);
+
+//Login & Logout User route
+
 router.post("/login", checkIds, authControllers.login);
+router.post("/logout",);
+
 
 module.exports = router;
