@@ -33,7 +33,7 @@ const verifyCookie = (req, res, next) => {
 
 const logout = (req, res) => {
 
-    
+
 }
 
 module.exports = { checkIds, verifyCookie };
