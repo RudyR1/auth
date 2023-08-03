@@ -3,8 +3,9 @@ const jwt = require("jsonwebtoken");
 
 const checkIds = (req, res, next) => {
   const { error } = Joi.object({
+    username: Joi.string().alphanum().min(3).presence("required"),
     email: Joi.string().email().presence("required"),
-    password: Joi.string().min(2).presence("required"),
+    password: Joi.string().min(6).presence("required"),
   }).validate(req.body, { abortEarly: false });
 
   if (!error) {

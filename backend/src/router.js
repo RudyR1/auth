@@ -10,7 +10,7 @@ const { checkIds, verifyCookie } = require("./middlewares/auth");
 
 router.get("/users", usersControllers.browse);
 router.put("/users/:id", hashPassword, usersControllers.edit);
-router.post("/signup", hashPassword, usersControllers.add);
+router.post("/signup", checkIds, hashPassword, usersControllers.add);
 
 //Login & Logout User route
 
