@@ -5,7 +5,7 @@ const checkIds = (req, res, next) => {
   const { error } = Joi.object({
     username: Joi.string().alphanum().min(3).presence("required"),
     email: Joi.string().email().presence("required"),
-    password: Joi.string().min(6).presence("required"),
+    password: Joi.string().min(6).presence("required"), //Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/)
   }).validate(req.body, { abortEarly: false });
 
   if (!error) {
@@ -33,8 +33,9 @@ const verifyCookie = (req, res, next) => {
 };
 
 const logout = (req, res) => {
-
-
+    res.clearCookie('token');
+    console.log(req.token);
+    return res.redirect('/login');
 }
 
-module.exports = { checkIds, verifyCookie };
+module.exports = { checkIds, verifyCookie, logout };

@@ -1,10 +1,13 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
+const cookie = require("cookie-parser");
+
 const express = require("express");
 
 const app = express();
 app.use(express.json());
+app.use(cookie());
 
 const cors = require("cors");
 
